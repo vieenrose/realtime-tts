@@ -1,0 +1,31 @@
+services:
+  tts:
+    build: .
+    image: moss-tts-realtime-onnx:latest
+    container_name: moss-tts
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models:ro
+    environment:
+      - MODEL_DIR=/app/models/MOSS-TTS-Realtime-ONNX
+      - CUDA_VISIBLE_DEVICES=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Optional: LiveKit integration example
+  # livekit-agent:
+  #   image: livekit-agent:latest
+  #   environment:
+  #     - TTS_URL=http://tts:8000

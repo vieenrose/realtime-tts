@@ -1,0 +1,8 @@
+numpy
+onnxruntime-gpu
+soundfile
+librosa
+tokenizers
+fastapi
+uvicorn[standard]
+websockets

@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+
+# Model files (download separately)
+models/
+
+# Generated output
+test_output.wav
+
+# Claude Code internal
+.claude/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
