@@ -146,6 +146,14 @@ Returns reference audio files available for voice cloning.
 | Synthesis Time | 120.83s |
 | RTF | 4.24 |
 
+### GPU Benchmark Results (CUDA 13 + cuDNN 9)
+
+| Metric | Value |
+|--------|-------|
+| Audio Duration | 8.08s |
+| Synthesis Time | 20.40s |
+| RTF | 2.525 |
+
 **Note**: RTF > 1.0 means synthesis takes longer than audio duration. For real-time streaming (RTF < 1.0), GPU acceleration with CUDA + cuDNN is required.
 
 ### Recommended Decoding Parameters
@@ -187,8 +195,15 @@ Returns reference audio files available for voice cloning.
 For GPU acceleration:
 
 ```bash
-# Install cuDNN 9 for CUDA 13
+# Install cuDNN 9 for CUDA 13 (pip package)
 pip install nvidia-cudnn-cu13==9.20.0.48
+
+# Install ONNX Runtime GPU (Microsoft nightly for aarch64)
+pip uninstall onnxruntime -y
+pip install --pre --index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/ort-cuda-13-nightly/pypi/simple/ onnxruntime-gpu
+
+# Configure library paths (required for pip-installed cuDNN)
+source setup_cuda_env.sh
 
 # Verify CUDA provider
 python3 -c "import onnxruntime as ort; print(ort.get_available_providers())"
