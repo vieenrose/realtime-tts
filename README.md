@@ -39,6 +39,28 @@ Text Input ──► LLM (Qwen-based) ──► Speech Tokens (6561 vocab)
 - ONNX Runtime GPU (CUDA 13 + cuDNN 9)
 - CUDA-capable GPU (tested on aarch64)
 
+## Docker Image (DGX Spark / Grace Hopper)
+
+Pre-built Docker image for NVIDIA DGX Spark (ARM64 Grace Hopper with CUDA):
+
+```bash
+# Pull from DockerHub
+docker pull luigiliutw/realtime-tts-dgx-spark:latest
+
+# Run with GPU support
+docker run --gpus all -p 8000:8000 \
+    -v ./models:/app/models \
+    luigiliutw/realtime-tts-dgx-spark:latest
+```
+
+**Image details:**
+- Base: `nvidia/cuda:12.8.0-runtime-ubuntu24.04`
+- ONNX Runtime: Microsoft nightly build with CUDAExecutionProvider for ARM64
+- Platform: `linux/arm64` (Grace Hopper / DGX Spark)
+- Size: ~2.3GB
+
+**DockerHub:** [luigiliutw/realtime-tts-dgx-spark](https://hub.docker.com/r/luigiliutw/realtime-tts-dgx-spark)
+
 ## Quick Start
 
 ### 1. Download Models
