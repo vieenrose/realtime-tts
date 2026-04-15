@@ -61,6 +61,9 @@ docker run --gpus all -p 8000:8000 \
 
 **DockerHub:** [luigiliutw/realtime-tts-dgx-spark](https://hub.docker.com/r/luigiliutw/realtime-tts-dgx-spark)
 
+**Description for Docker Hub:**
+> ONNX-based streaming TTS service for LiveKit voice agents on NVIDIA DGX Spark (ARM64 Grace Hopper). Supports zh-TW/English mixed text with CUDA acceleration via Microsoft nightly onnxruntime-gpu. 143x faster than realtime (RTF 0.007).
+
 ## Quick Start
 
 ### 1. Download Models
